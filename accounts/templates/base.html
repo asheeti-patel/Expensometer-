@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}Expense Tracker{% endblock %}</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #d0e7ff, #f4f9ff);
+      color: #333;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background-color: #ffffffcc;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo-container a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo-container img {
+      height: 60px;
+      width: auto;
+      border-radius: 8px;
+    }
+
+    .logo-container span {
+      margin-left: 15px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2e86de;
+    }
+
+    nav a, nav form button {
+      margin-left: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #4b9aea;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    nav a:hover,
+    nav form button:hover {
+      color: #0a63c9;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e1e4e8;
+      margin: 0 40px;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 40px 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo-container">
+      <a href="{% url 'home' %}">
+        <img src="https://img.freepik.com/free-vector/growing-graph-icon-business-analytics-chart-symbol_53876-119568.jpg?semt=ais_hybrid&w=740" alt="Logo" />
+        <span>Expensometer</span>
+      </a>
+    </div>
+
+    <div>
+      {% if not request.path == '/login/' and not request.path == '/register/' %}
+        {% if user.is_authenticated %}
+          <form method="post" action="{% url 'logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}">Login</a>
+          <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </nav>
+
+  <hr>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

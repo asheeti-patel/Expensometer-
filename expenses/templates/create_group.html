@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block title %}Create Group{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background: linear-gradient(to right, #e0f7fa, #f9fafa);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .group-container {
+    max-width: 500px;
+    margin: 60px auto;
+    background-color: #fff;
+    padding: 35px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .group-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #2e86de;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  input[type="text"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #2e86de;
+    outline: none;
+    box-shadow: 0 0 6px rgba(46, 134, 222, 0.3);
+  }
+
+  button {
+    background-color: #2e86de;
+    color: white;
+    padding: 14px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #1b69c0;
+  }
+
+  .back-link {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .back-link a {
+    color: #2e86de;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link a:hover {
+    color: #1b69c0;
+  }
+</style>
+
+<div class="group-container">
+  <h2>Create Group</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Group</button>
+  </form>
+
+  <div class="back-link">
+    <p>← <a href="{% url 'dashboard' %}">Back to Dashboard</a></p>
+  </div>
+</div>
+{% endblock %}

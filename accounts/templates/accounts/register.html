@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<style>
+  .register-container {
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff;
+    padding: 30px 25px;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(46, 134, 222, 0.15);
+    box-sizing: border-box;
+  }
+
+  .register-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2e86de;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 1.2px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-group {
+    position: relative;
+    margin-bottom: 25px;
+  }
+
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="password"],
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.8px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  form input:focus {
+    border-color: #2e86de;
+    outline: none;
+    box-shadow: 0 0 8px rgba(46, 134, 222, 0.4);
+  }
+
+  .tooltip {
+    position: absolute;
+    left: 0;
+    bottom: -55px;
+    background: #2e86de;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .input-group input:focus + .tooltip,
+  .input-group input:hover + .tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  button[type="submit"] {
+    margin-top: 10px;
+    background-color: #2e86de;
+    color: white;
+    padding: 14px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.35s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #1b69c0;
+  }
+
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #555555;
+  }
+
+  .login-link a {
+    color: #2e86de;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .login-link a:hover {
+    color: #1b69c0;
+  }
+
+  @media screen and (max-height: 700px) {
+    .register-container {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+</style>
+
+<div class="register-container">
+  <h2>Register</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="input-group">
+      {{ form.username.label_tag }}
+      {{ form.username }}
+      <div class="tooltip">Username: length-4-10 and no special-char.</div>
+    </div>
+    <div class="input-group">
+      {{ form.email.label_tag }}
+      {{ form.email }}
+      <div class="tooltip">Enter a valid email address.</div>
+    </div>
+    <div class="input-group">
+      {{ form.password1.label_tag }}
+      {{ form.password1 }}
+      <div class="tooltip">
+        Password: min 8 chars, 1 uppercase, 1 number, 1 special char.
+      </div>
+    </div>
+    <div class="input-group">
+      {{ form.password2.label_tag }}
+      {{ form.password2 }}
+    </div>
+    <button type="submit">Register</button>
+  </form>
+  <p class="login-link">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock %}

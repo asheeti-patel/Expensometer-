@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}My Group Expenses{% endblock %}
+
+{% block content %}
+<h2 style="text-align:center; color:#2e86de; margin-top: 20px;">💰 Group Expense Summary</h2>
+
+<div style="max-width: 800px; margin: 30px auto; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+  {% if splits %}
+  <table style="width:100%; border-collapse: collapse;">
+    <thead>
+      <tr style="background-color:#2e86de; color:white;">
+        <th style="padding: 12px;">Group</th>
+        <th>Description</th>
+        <th>Total Amount</th>
+        <th>Your Share</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for split in splits %}
+      <tr style="text-align: center; border-bottom: 1px solid #ccc;">
+        <td style="padding: 10px;">{{ split.group_expense.group.name }}</td>
+        <td>{{ split.group_expense.description }}</td>
+        <td>₹{{ split.group_expense.amount }}</td>
+        <td><strong>₹{{ split.amount }}</strong></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="text-align:center;">You have no group expenses yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expense Tracker - Add Expense</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #e6f2ff, #ffffff);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 30px 25px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      z-index: 2;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #004080;
+    }
+
+    form label {
+      display: block;
+      margin: 12px 0 4px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    form input, form select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #0073e6;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #267ed6;
+    }
+
+    .bottom-right-button {
+      position: fixed;
+      bottom: 80px;
+      right: 30px;
+      z-index: 10;
+    }
+
+    .bottom-right-button a button {
+      background-color: #4f85ba;
+      color: white;
+      font-size: 16px;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .bottom-right-button a button:hover {
+      background-color: #00264d;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Expense Form -->
+  <div class="container">
+    <h2>Update your Expenses</h2>
+    <form method="post">
+      {% csrf_token %}
+      
+      <label for="{{ form.expense_name.id_for_label }}">Expense Name:</label>
+      {{ form.expense_name }}
+      
+      <label for="{{ form.amount.id_for_label }}">Amount:</label>
+      {{ form.amount }}
+      
+      <label for="{{ form.category.id_for_label }}">Category:</label>
+      {{ form.category }}
+      
+      <label for="{{ form.date.id_for_label }}">Date:</label>
+      {{ form.date }}
+
+      <button type="submit">Update Expense</button>
+    </form>
+  </div>
+
+  <!-- 🔍 Bottom Right View Expenses Button -->
+  <div class="bottom-right-button">
+    <a href="{% url 'expense_list' %}">
+      <button type="button">🔍 View My Expenses</button>
+    </a>
+  </div>
+
+</body>
+</html>
