@@ -7,8 +7,11 @@ A personal expense tracker web application built with Python and Django that hel
 # 📌 Features
 
 -➕ Add Expenses — Record daily expenses with amount and details
+
 -🗑️ Delete Expenses — Remove expenses that are no longer needed
+
 -👁️ View Expenses — See all your recorded expenses in one place
+
 -🗂️ Categorise Expenses — Organise expenses by category for better tracking
 
 
