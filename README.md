@@ -14,10 +14,10 @@ A personal expense tracker web application built with Python and Django that hel
 
 # 🛠️ Tech Used
 
-~Language: Python 3 
+-Language: Python 3 
 
-~Framework: Django 
+-Framework: Django 
 
-~Database: SQLite 
+-Database: SQLite 
 
-~Frontend: HTML, CSS
+-Frontend: HTML, CSS
